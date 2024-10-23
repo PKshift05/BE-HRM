@@ -1,4 +1,4 @@
-const { getAllContract, getDetailContract } = require("../model/contractModel")
+const { getAllContract, getDetailContract, createContract } = require("../model/contractModel")
 
 exports.getAllContract = async(req,res) =>{
     try {
@@ -25,6 +25,36 @@ exports.getDetailContract = async(req,res) =>{
         return res.status(500).json({error: 'Failed to get contract'});
     } catch (error) {
         return res.status(500).json({error: error.message});
+        
+    }
+}
+
+exports.createContract = async(req,res)=>{
+    try {
+        const {contract_type, position_id, employee_id, start_date, end_date, base_salary, salary_coefficient} = req.body;
+
+        if(!contract_type || !position_id || !employee_id || !start_date || !end_date || !base_salary || !salary_coefficient) {
+            return res.status(400).json({ error: 'Missing required feilds' });
+        }
+
+        const result = await createContract(contract_type, position_id, employee_id, start_date, end_date, base_salary, salary_coefficient);
+
+        if(result){
+            return res.status(201).json(result);
+        }
+
+        return res.status(500).json({error: 'Failed to create contract'});
+
+
+    } catch (error) {
+        return res.status(500).json({error: error.message});
+    }
+}
+
+exports.updateContract = async (req,res) => {
+    try {
+        
+    } catch (error) {
         
     }
 }
