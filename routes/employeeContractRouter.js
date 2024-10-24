@@ -5,6 +5,6 @@ const contractControllers = require('../controllers/contractControllers')
 contractRouter.get('/getAllContract', contractControllers.getAllContract);
 contractRouter.get('/getDetailContract/:id?', contractControllers.getDetailContract);
 contractRouter.post('/createContract', contractControllers.createContract);
-contractRouter.put('/updateContract', contractControllers.updateContract);
+contractRouter.put('/updateContract/:id?', contractControllers.updateContract);
 
 module.exports = contractRouter

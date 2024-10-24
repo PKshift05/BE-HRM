@@ -60,11 +60,31 @@ const createContract = async(contract_type, position_id, employee_id, start_date
     }
 }
 
-const updateContract = async()=>{
+const updateContract = async(contract_type, position_id, end_date, base_salary, salary_coefficient, is_active, id )=>{
     try {
-        
+        const values = [contract_type, position_id, end_date, base_salary, salary_coefficient, is_active,id]
+
+        const query =`
+            update employment_contract
+            set contract_type = $1,
+                position_id = $2, 
+                end_date =$3, 
+                base_salary =$4, 
+                salary_coefficient = $5, 
+                is_active = $6
+            where contract_id = $7
+            returning *
+        `
+
+        const result = await pool.query(query, values)
+
+        if(result.rows.length > 0){
+            return result.rows;
+        }
+
+        return null
     } catch (error) {
-        
+        throw new Error(`Database error: ${error.message}`);    
     }
 }
 

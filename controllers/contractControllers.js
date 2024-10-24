@@ -1,4 +1,4 @@
-const { getAllContract, getDetailContract, createContract } = require("../model/contractModel")
+const { getAllContract, getDetailContract, createContract, updateContract } = require("../model/contractModel")
 
 exports.getAllContract = async(req,res) =>{
     try {
@@ -53,8 +53,26 @@ exports.createContract = async(req,res)=>{
 
 exports.updateContract = async (req,res) => {
     try {
-        
+        const {contract_type, position_id, end_date, base_salary, salary_coefficient, is_active} = req.body
+
+        const id = req.params.id
+
+        if (!contract_type || !position_id || !end_date || !base_salary || !salary_coefficient || !is_active){
+            return res.status(400).json({ error: 'Missing required feilds' })
+        }
+
+        if (!id){
+            return res.status(500).json({error: "request contract id"});
+        }
+
+        const result = await updateContract(contract_type, position_id, end_date, base_salary, salary_coefficient, is_active, id);
+
+        if (result) {
+            return res.status(201).json("Updated successfully");
+        }
+
+        return res.status(500).json({error: "Failed to update"});
     } catch (error) {
-        
+        return res.status(500).json({error: error.message});
     }
 }
