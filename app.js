@@ -4,11 +4,14 @@ const employeeRouter = require('./routes/employeeRoute')
 const contractRouter = require('./routes/employeeContractRouter')
 const departmentRouter = require('./routes/departmentRouter')
 const positionRouter = require('./routes/positionRouter')
+const userRouter = require('./routes/userRouter')
 
 require('dotenv').config()
 
 
 app.use(express.json())
+
+app.use('/hrm/auth/',userRouter)
 app.use('/hrm/employee/', employeeRouter)
 app.use('/hrm/contract/', contractRouter)
 app.use('/hrm/department/',departmentRouter)
