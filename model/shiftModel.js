@@ -87,9 +87,9 @@ const update_Shift =async(shift_name, start, end,shift_id)=>{
 const delete_Shift = async(shift_id)=>{
     try {
         const query =`
-            delete * from shift
-            where shift_if = $1
-            returning *
+            delete from shift
+            where shift_id = $1
+            returning*
         `
 
         const result = await pool.query(query,[shift_id]);

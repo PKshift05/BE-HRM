@@ -47,8 +47,8 @@ exports.update_shift = async (req, res) => {
 
 exports.delete_shift = async (req, res) => {
     try {
-        const { shift_id } = req.params.id
-
+        const shift_id  = req.params.id
+        console.log(shift_id)
         if (!shift_id) {
             return res.status(400).json({ error: 'Missing shift_id' });
         }
