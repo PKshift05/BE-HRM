@@ -1,6 +1,6 @@
 const { getAllDepartment, updateDepartment, getDetailDepartment } = require("../model/departmentModel")
 
-exports.getAllDepartment = async(req,res)=>{
+const getAllDepartment = async(req,res)=>{
     try {
         const result = await getAllDepartment()
 
@@ -15,7 +15,7 @@ exports.getAllDepartment = async(req,res)=>{
     }
 }
 
-exports.getDetailDepartment = async(req,res)=>{
+const getDetailDepartment = async(req,res)=>{
     try {
         const department_id = req.params.id
         const result = await getDetailDepartment(department_id)
@@ -31,7 +31,7 @@ exports.getDetailDepartment = async(req,res)=>{
     }
 }
 
-exports.updateDepartment = async(req,res)=>{
+const updateDepartment = async(req,res)=>{
     try {
         const {department_name, address, department_phone} = req.body;
         const department_id = req.params.id;
@@ -47,3 +47,5 @@ exports.updateDepartment = async(req,res)=>{
         return res.status(500).json({error: error.message}); 
     }
 }
+
+module.exports = {getAllDepartment,getDetailDepartment,updateDepartment}

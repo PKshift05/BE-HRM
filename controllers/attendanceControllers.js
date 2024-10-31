@@ -1,7 +1,7 @@
 
 const { check_in, check_out, get_working_hours, get_attendance_history } = require("../model/attendancetModel");
 
-exports.check_in = async (req, res) => {
+const check_in = async (req, res) => {
     try {
         const employee_id = req.body.id
         const { date, time } = req.body
@@ -26,7 +26,7 @@ exports.check_in = async (req, res) => {
     }
 }
 
-exports.check_out = async (req, res) => {
+const check_out = async (req, res) => {
     try {
 
         const employee_id = req.body.id
@@ -50,7 +50,7 @@ exports.check_out = async (req, res) => {
     }
 }
 
-exports.get_working_hours = async (req, res) => {
+const get_working_hours = async (req, res) => {
     try {
         const { employee_id, date_start, date_end } = req.query;
 
@@ -75,7 +75,7 @@ exports.get_working_hours = async (req, res) => {
 }
 
 // wait
-exports.get_attendance_history = async (req, res) => {
+const get_attendance_history = async (req, res) => {
     try {
 
         const result = await get_attendance_history();
@@ -92,3 +92,6 @@ exports.get_attendance_history = async (req, res) => {
 
     }
 }
+
+
+module.exports ={check_in,check_out,get_working_hours, get_attendance_history}

@@ -1,17 +1,17 @@
 const { getAllEmployee, getSinglEmployee, addEmployee, updateEmploy, searchEmployee } = require('../model/employeeModel')
 
-exports.getAllEmployee = async (req, res) => {
+const getAllEmployee = async (req, res) => {
     const allEmployee = await getAllEmployee()
     return res.status(201).json(allEmployee);
 }
 
-exports.getDetailEmployee = async (req, res) => {
+const getDetailEmployee = async (req, res) => {
     const id = req.params.id;
     const detailEmployee = await getSinglEmployee(id);
     return res.status(201).json(detailEmployee);
 }
 
-exports.addEmployee = async (req, res) => {
+const addEmployee = async (req, res) => {
     try {
         const { last_name, first_name, date_of_birth, hometown, phone_number, email, id_card } = req.body
         if (!last_name || !first_name || !date_of_birth || !hometown || !phone_number || !email || !id_card) {
@@ -30,7 +30,7 @@ exports.addEmployee = async (req, res) => {
     }
 }
 
-exports.updateEmploy = async (req, res) => {
+const updateEmploy = async (req, res) => {
     try {
         const { last_name, first_name, date_of_birth, hometown, phone_number, email, id_card } = req.body
         const id = req.params.id;
@@ -53,7 +53,7 @@ exports.updateEmploy = async (req, res) => {
     }
 }
 
-exports.searchEmployee = async(req,res)=>{
+const searchEmployee = async(req,res)=>{
     try {
         const stringSearch = req.params.string;
         
@@ -75,3 +75,5 @@ exports.searchEmployee = async(req,res)=>{
         return res.status(500).json({ error: error.message });
     }
 }
+
+module.exports = {getAllEmployee,getDetailEmployee,addEmployee,updateEmploy,searchEmployee}

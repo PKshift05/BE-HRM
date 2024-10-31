@@ -1,7 +1,7 @@
 const { create_Shift, update_Shift, delete_Shift, get_Detail_Shift, get_All_Shift } = require("../model/shiftModel");
 
 
-exports.create_shift = async (req, res) => {
+const create_shift = async (req, res) => {
     try {
         const { shift_name, start_at, end_at } = req.body;
 
@@ -24,7 +24,7 @@ exports.create_shift = async (req, res) => {
 }
 
 
-exports.update_shift = async (req, res) => {
+const update_shift = async (req, res) => {
     try {
         const shift_id = req.params.id
         const { shift_name, start_at, end_at } = req.body;
@@ -45,7 +45,7 @@ exports.update_shift = async (req, res) => {
     }
 }
 
-exports.delete_shift = async (req, res) => {
+const delete_shift = async (req, res) => {
     try {
         const shift_id  = req.params.id
         console.log(shift_id)
@@ -69,7 +69,7 @@ exports.delete_shift = async (req, res) => {
 }
 
 
-exports.get_all_shift = async (req, res) => {
+const get_all_shift = async (req, res) => {
     try {
         const result = await get_All_Shift();
 
@@ -84,7 +84,7 @@ exports.get_all_shift = async (req, res) => {
     }
 }
 
-exports.get_detail_shift = async (req,res) => {
+const get_detail_shift = async (req,res) => {
     try {
         const shift_id = req.params.id
 
@@ -106,3 +106,5 @@ exports.get_detail_shift = async (req,res) => {
         
     }
 }
+
+module.exports = {create_shift,update_shift,delete_shift,get_all_shift,get_detail_shift}

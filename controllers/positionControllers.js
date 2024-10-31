@@ -1,7 +1,7 @@
 
 const { getAllPosition, getDetailPosition, createPosition } = require("../model/positionModel")
 
-exports.getAllPosition = async(req,res)=>{
+const getAllPosition = async(req,res)=>{
     try {
         const result = await getAllPosition();
 
@@ -16,7 +16,7 @@ exports.getAllPosition = async(req,res)=>{
 }
 
 
-exports.getDetailPosition = async(req,res)=>{
+const getDetailPosition = async(req,res)=>{
     try {
         const position_id = req.params.id;
 
@@ -34,7 +34,7 @@ exports.getDetailPosition = async(req,res)=>{
 }
 
 
-exports.createPostion = async(req,res) =>{
+const createPosition = async(req,res) =>{
     try{
         const {position_name, department_id} = req.body;
 
@@ -55,3 +55,5 @@ exports.createPostion = async(req,res) =>{
         return res.status(500).json({error: error.message})
     }
 }
+
+module.exports = {getAllPosition,getDetailPosition,createPosition}

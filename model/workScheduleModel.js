@@ -81,6 +81,7 @@ const get_work_schedule = async(employee_id, date_start, date_end)=>{
             from work_schedule
             where employee_id = $1
             and date between $2 and $3
+            order by date
         `
         
         const result = await pool.query(query,[employee_id,date_start,date_end]);

@@ -63,7 +63,7 @@ exports.delete_work_schedule = async (req,res) => {
 exports.get_work_schedule = async (req,res) => {
     try {
         const {employee_id,date_start, date_end} = req.query
-        
+        console.log(employee_id,date_start,date_end);
         const result = await get_work_schedule(employee_id,date_start,date_end);
 
         if (result) {

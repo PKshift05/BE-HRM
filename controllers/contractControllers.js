@@ -1,6 +1,6 @@
 const { getAllContract, getDetailContract, createContract, updateContract } = require("../model/contractModel")
 
-exports.getAllContract = async(req,res) =>{
+const getAllContract = async(req,res) =>{
     try {
         const allContract = await getAllContract();
         if(allContract){
@@ -13,7 +13,7 @@ exports.getAllContract = async(req,res) =>{
 
 }
 
-exports.getDetailContract = async(req,res) =>{
+const getDetailContract = async(req,res) =>{
     try {
         const id = req.params.id;
         console.log(id)
@@ -29,7 +29,7 @@ exports.getDetailContract = async(req,res) =>{
     }
 }
 
-exports.createContract = async(req,res)=>{
+const createContract = async(req,res)=>{
     try {
         const {contract_type, position_id, employee_id, start_date, end_date, base_salary, salary_coefficient} = req.body;
 
@@ -51,7 +51,7 @@ exports.createContract = async(req,res)=>{
     }
 }
 
-exports.updateContract = async (req,res) => {
+const updateContract = async (req,res) => {
     try {
         const {contract_type, position_id, end_date, base_salary, salary_coefficient, is_active} = req.body
 
@@ -76,3 +76,6 @@ exports.updateContract = async (req,res) => {
         return res.status(500).json({error: error.message});
     }
 }
+
+
+module.exports = {getAllContract, getDetailContract,createContract,updateContract}
